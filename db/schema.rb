@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 2019_04_20_143008) do
 
   create_table "permissions", force: :cascade do |t|
     t.integer "model_list_id"
-    t.boolean "is_create"
-    t.boolean "is_read"
-    t.boolean "is_update"
-    t.boolean "is_destroy"
+    t.boolean "is_create", default: true
+    t.boolean "is_read", default: true
+    t.boolean "is_update", default: true
+    t.boolean "is_destroy", default: true
     t.integer "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
