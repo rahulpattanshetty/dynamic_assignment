@@ -8,5 +8,12 @@
 user = User.new 
 user.email = "admin@gmail.com"
 user.password = "password"
-user.is_admin = true
+# user.is_admin = true
 user.save
+
+role = Role.new
+role.name = "admin"
+role.save
+
+model_lists = ["Vehicle","Employee","ServiceEntery"]
+model_lists.map{|m| ModelList.create(name: m)}
