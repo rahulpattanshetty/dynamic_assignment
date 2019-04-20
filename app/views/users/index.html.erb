@@ -1,0 +1,18 @@
+<h1>Users list</h1>
+<%=link_to "Add User", new_user_path%>
+<table class="table" border="1">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@users.each do |user|%>
+      <tr>
+        <td><%=user.email%></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
