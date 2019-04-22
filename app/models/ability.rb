@@ -15,10 +15,19 @@ class Ability
 
   def set_abilities(user)
     user.role.permissions.each do |permission|
-
-      
-    end
-    
+      if permission.is_read
+        can :read, permission.model_list.name.constantize
+      end
+      if permission.is_create
+        can :create, permission.model_list.name.constantize
+      end
+      if permission.is_update
+        can :update, permission.model_list.name.constantize
+      end
+      if permission.is_destroy
+        can :destroy, permission.model_list.name.constantize
+      end
+    end  
   end
   
 end

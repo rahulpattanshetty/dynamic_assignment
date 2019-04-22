@@ -1,8 +1,8 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:edit,:update,:destroy]
+class Admin::UsersController < ApplicationController
+  before_action :set_user, only: [:edit,:update,:destroy,:permissions]
   
   def index
-    @users = User.where(is_admin: false)
+    @users = User.includes(:roles).select{|user| user.email != current_user.email}
   end
 
   def create
@@ -38,6 +38,13 @@ class UsersController < ApplicationController
     flash[:notice] = "User destroyed successfully"
     redirect_back(fallback_location: root_path)
   end
+
+  def permissions
+    
+    binding.pry
+    
+  end
+  
   
 
   private 
@@ -47,7 +54,7 @@ class UsersController < ApplicationController
     end
     
     def user_params
-      params.require(:user).permit(:email,:password)
+      params.permit(:email,:password)
     end
     
 end

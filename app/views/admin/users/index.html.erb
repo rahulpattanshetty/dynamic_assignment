@@ -1,5 +1,5 @@
 <h1>Users list</h1>
-<%=link_to "Add User", new_user_path%>
+<%=link_to "Add User", new_admin_user_path%>
 <table class="table" border="1">
   <thead>
     <tr>
@@ -12,6 +12,8 @@
     <%@users.each do |user|%>
       <tr>
         <td><%=user.email%></td>
+        <td><%= user.roles.present? ? user.roles.pluck(:name).join : "Not Assigned"%></td>
+        <td><%=link_to "set permission", admin_user_permissions_path(user.id) %></td>
       </tr>
     <%end%>
   </tbody>
