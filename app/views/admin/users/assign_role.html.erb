@@ -1,0 +1,7 @@
+<h1>Assign Role</h1>
+<%= form_for @user, url: admin_user_path do |f| %>
+  <div class="field">
+    <%=f.collection_select :role_ids, Role.all, :id,:name%>
+  </div>
+  <%=f.submit "update"%>
+<%end%>

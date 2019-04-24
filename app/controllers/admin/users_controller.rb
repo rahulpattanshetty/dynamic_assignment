@@ -1,15 +1,14 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: [:edit,:update,:destroy,:permissions]
-  
+  before_action :set_user, only: [:edit,:update,:destroy,:assign_role]
+  load_and_authorize_resource
   def index
-    @users = User.includes(:roles).select{|user| user.email != current_user.email}
+    @users = User.includes(:roles)
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "User created successfully"
-      redirect_back(fallback_location: root_path)
+      redirect_to admin_users_path, notice: "User created successfully"
     else
       flash[:alert] = "Something went wrong"
       redirect_back(fallback_location: root_path)
@@ -25,8 +24,9 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "User updated successfully"
-      redirect_back(fallback_location: root_path)
+      # flash[:notice] = "User updated successfully"
+      # redirect_back(fallback_location: root_path)
+      redirect_to admin_users_path, notice: "User updated successfully"
     else
       flash[:alert] = "Something went wrong"
       redirect_back(fallback_location: root_path)
@@ -39,12 +39,11 @@ class Admin::UsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def permissions
-    
-    binding.pry
+  
+  
+  def assign_role
     
   end
-  
   
 
   private 
@@ -54,7 +53,7 @@ class Admin::UsersController < ApplicationController
     end
     
     def user_params
-      params.permit(:email,:password)
+      params.require(:user).permit(:email,:password,:role_ids)
     end
     
 end

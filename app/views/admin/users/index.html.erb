@@ -5,15 +5,18 @@
     <tr>
       <th>Email</th>
       <th>Role</th>
-      <th>Actions</th>
+      <!--<th>Actions</th>-->
     </tr>
   </thead>
   <tbody>
     <%@users.each do |user|%>
       <tr>
         <td><%=user.email%></td>
-        <td><%= user.roles.present? ? user.roles.pluck(:name).join : "Not Assigned"%></td>
-        <td><%=link_to "set permission", admin_user_permissions_path(user.id) %></td>
+        <td><%#= link_to "#{user.roles.present? ? user.roles.pluck(:name).join : "Not Assigned"}",admin_assign_role_path(user.id) %>
+          <%= link_to "#{user.roles.pluck(:name).present? ? user.roles.pluck(:name).join : "Not Assigned"}",admin_assign_role_path(user.id) %>
+          
+        </td>
+        <td><%#=link_to "set permission", admin_user_permissions_path(user.id) %></td>
       </tr>
     <%end%>
   </tbody>

@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  
-  post 'roles', to:"roles#create"
+  resources :service_entries
+  resources :employees
+  patch 'roles/update_permissions', to:"roles#update_permissions", as: "update_permissions"
+  get 'roles/permissions/:id', to:"roles#permissions", as: "role_permissions"
+  resources :roles
+  # get "roles", to:"roles#index"
+  # post 'roles', to:"roles#create"
+  # delete 'roles/:id', to:"roles#destroy" 
   resources :vehicles
   namespace :admin do
-    get 'users/permissions/:id', to:"users#permissions", as: "user_permissions"
+    get 'users/assign_role/:id', to:"users#assign_role", as:"assign_role"
+    
     resources :users
     
   end

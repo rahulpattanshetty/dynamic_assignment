@@ -16,7 +16,7 @@ user.role_ids = [role.id]
 user.save
 
 
-model_lists = ["Vehicle","Employee","ServiceEntery"]
+model_lists = ["Employee","ServiceEntry","Vehicle","User","Role"].sort!
 model_lists.map{|m| ModelList.create(name: m)}
 
 ModelList.all.each do |m|

@@ -1,0 +1,2 @@
+class ServiceEntry < ApplicationRecord
+end

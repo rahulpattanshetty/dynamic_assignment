@@ -1,0 +1,44 @@
+<h1>Role & Permissions</h1>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>read</th>
+      <th>write</th>
+      <th>destroy</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@permissions.each do |permission|%>
+      <tr>
+        <%= form_for permission ,url: update_permissions_path do |f|%>
+          <td><%=permission.model_list.name%></td>
+          <td><%= f.check_box :is_read %></td>
+          <td><%= f.check_box :is_create %></td>
+          <td><%= f.check_box :is_destroy %></td>
+          <td>
+            <%=f.submit "update"%>
+          </td>
+          <%=f.hidden_field :id, value: permission.id%>
+        <%end%>
+      </tr>
+    <%end%>
+  </tbody>
+<table>
+<script>
+//document.location.reload() 
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+</script>

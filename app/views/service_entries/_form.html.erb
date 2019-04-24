@@ -1,0 +1,42 @@
+<%= form_with(model: service_entry, local: true) do |form| %>
+  <% if service_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(service_entry.errors.count, "error") %> prohibited this service_entry from being saved:</h2>
+
+      <ul>
+      <% service_entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vehicle_id %>
+    <%= form.number_field :vehicle_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax %>
+    <%= form.text_field :tax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total %>
+    <%= form.text_field :total %>
+  </div>
+
+  <div class="field">
+    <%= form.label :service_date %>
+    <%= form.datetime_select :service_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

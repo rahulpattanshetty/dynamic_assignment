@@ -1,0 +1,32 @@
+<h1>Roles</h1>
+<%=form_with(model:Role.new, local:true) do |form|%>
+  <div class="field">
+    <%=form.label :name%>
+    <%=form.text_field :name%>
+  </div>
+  <%=form.submit "Add Role"%>
+<%end%>
+<br/>
+<br/>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Action</th>
+      <th>Permissions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%Role.all.each do |r| %>
+      <tr>
+        <td><%=r.name%></td>
+        <td>
+          <%if r.name != "admin"%>
+            <%=link_to "delete", r, method: :delete, data: {confirm:"Are you sure?"}%>
+          <%end%>    
+        </td>
+        <td><%=link_to "set permission", role_permissions_path(r.id) %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

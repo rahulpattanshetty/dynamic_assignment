@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @service_entry.name %>
+</p>
+
+<p>
+  <strong>Vehicle:</strong>
+  <%= @service_entry.vehicle_id %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @service_entry.tax %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @service_entry.total %>
+</p>
+
+<p>
+  <strong>Service date:</strong>
+  <%= @service_entry.service_date %>
+</p>
+
+<%= link_to 'Edit', edit_service_entry_path(@service_entry) %> |
+<%= link_to 'Back', service_entries_path %>

@@ -1,6 +1,6 @@
 class VehiclesController < ApplicationController
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /vehicles
   def index
     @vehicles = Vehicle.all

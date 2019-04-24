@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_22_145417) do
+ActiveRecord::Schema.define(version: 2019_04_24_061538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.string "mobile"
+    t.string "address"
+    t.string "department"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "model_lists", force: :cascade do |t|
     t.string "name"
@@ -23,10 +33,10 @@ ActiveRecord::Schema.define(version: 2019_04_22_145417) do
 
   create_table "permissions", force: :cascade do |t|
     t.integer "model_list_id"
-    t.boolean "is_create", default: true
-    t.boolean "is_read", default: true
-    t.boolean "is_update", default: true
-    t.boolean "is_destroy", default: true
+    t.boolean "is_create", default: false
+    t.boolean "is_read", default: false
+    t.boolean "is_update", default: false
+    t.boolean "is_destroy", default: false
     t.integer "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,6 +44,16 @@ ActiveRecord::Schema.define(version: 2019_04_22_145417) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "service_entries", force: :cascade do |t|
+    t.string "name"
+    t.integer "vehicle_id"
+    t.float "tax"
+    t.float "total"
+    t.datetime "service_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
