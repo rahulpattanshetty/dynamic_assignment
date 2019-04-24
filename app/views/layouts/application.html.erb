@@ -10,8 +10,8 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <p class="notice"><h2><b><%= notice %></p>
+    <p class="alert"><%= alert %></b></h2></p>
     <% if user_signed_in? %>
       <%= current_user.email %> |
       <%#= link_to "Account Settings", edit_user_registration_path %> | 

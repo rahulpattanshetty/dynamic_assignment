@@ -1,5 +1,6 @@
 <h1>Users list</h1>
-<%=link_to "Add User", new_admin_user_path%>
+<b><%#=link_to "Add User", new_admin_user_path%></b>
+<%= button_to "Add User", new_admin_user_path, :method => "get" %>
 <table class="table" border="1">
   <thead>
     <tr>
